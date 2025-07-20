@@ -1,12 +1,7 @@
 #!/bin/bash
 
-ROOT_PWD=$(cd "$(dirname $0)" && cd -P "$(dirname "$SOURCE")" && pwd)
+export LUCKFOX_SDK_PATH=/mnt/buildroot_volume/luckfox-pico/
 
-if [ "$1" = "clean" ]; then
-	if [ -d "${ROOT_PWD}/build" ]; then
-		rm -rf "${ROOT_PWD}/build"
-		echo " ${ROOT_PWD}/build has been deleted!"
-	fi
 
 ROOT_PWD=$(cd "$(dirname $0)" && cd -P "$(dirname "$SOURCE")" && pwd)
 
@@ -46,13 +41,14 @@ options=("luckfox_pico_retinaface_facenet"
 "luckfox_pico_capture_simplified")
 
 options_device=("LUCKFOX_PICO_PLUS"
-	"LUCKFOX_PICO_PRO_MAX")
+"LUCKFOX_PICO_PRO_MAX")
 
 PS3="Enter your choice [1-${#options[@]}]: "
 
 select opt in "${options[@]}"; do
     if [[ -n "$opt" ]]; then
         echo "You selected: $opt"
+        echo "你选择了: $opt"
         
         if [ "$opt" == "luckfox_pico_retinaface_facenet_spidev" ]; then
             PS3="Enter your choice [1-${#options_device[@]}]: "
